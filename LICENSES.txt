@@ -1,0 +1,21 @@
+EZ Tag - license notices
+========================
+
+EZ Tag itself
+  Copyright (C) 2026 Dr. Szaba
+  Free software under the GNU General Public License v3.0 or later (see LICENSE).
+  Source code: https://github.com/DrSzaba/ez-tag
+
+Parts included in the Windows installer
+  Python 3.12 (portable build by python-build-standalone)
+    Python Software Foundation License - see python\LICENSE.txt
+  Tcl/Tk 8.6 (the window toolkit, part of the Python build)
+    BSD-style license - see python\tcl\tcl8.6\license.terms and python\tcl\tk8.6\license.terms
+  mutagen 1.48.1 - reads and writes the audio tags
+    GNU GPL v2 or later - https://github.com/quodlibet/mutagen
+  Pillow 12.3 - shows cover pictures
+    MIT-CMU (HPND) license - https://github.com/python-pillow/Pillow
+
+Online lookups (only when you click Find Online)
+  MusicBrainz and the Cover Art Archive (https://musicbrainz.org) - open music data
+  iTunes Search API (https://itunes.apple.com) - album info and artwork

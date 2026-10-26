@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EZ Tag - free, easy music tag editor for Windows</title>
+<meta name="description" content="EZ Tag is a free, colorful music tag editor for Windows. Fix song titles, artists, albums, track numbers and cover art for MP3, FLAC, M4A, WMA, WAV, OGG, Opus and every other audio format. Rename files from tags, fill tags from file names, look up albums online.">
+<link rel="icon" href="app/assets/ez-tag.png">
+<style>
+  :root {
+    --purple-dark:#3b1f8f; --purple:#6741d9; --purple-light:#f3f0ff;
+    --pink:#d6336c; --orange:#f76707; --orange-dark:#d9480f; --green:#00D632; --green-dark:#00B22A;
+    --bg:#faf8ff; --card:#fff; --text:#1f1640; --muted:#5f587a;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+         background:var(--bg); color:var(--text); line-height:1.5; }
+  a { color:var(--purple); }
+  .wrap { max-width:1060px; margin:0 auto; padding:0 20px; }
+  header { background:linear-gradient(135deg, #5f3dc4 0%, #d6336c 62%, #f76707 100%); color:#fff;
+           text-align:center; padding:48px 20px 56px; }
+  header img { width:120px; height:120px; filter:drop-shadow(0 8px 18px rgba(0,0,0,.25)); }
+  header h1 { font-size:46px; margin:12px 0 4px; letter-spacing:1px; }
+  header h1 .e { color:#ffd43b; } header h1 .z { color:#8ce99a; }
+  header .tag { color:#fff3bf; font-size:20px; font-style:italic; margin:0 0 24px; }
+  header p.sub { max-width:640px; margin:0 auto 30px; font-size:18px; color:#f3eaff; }
+  .btn { display:inline-block; padding:18px 34px; border-radius:12px; font-size:22px; font-weight:700;
+          text-decoration:none; color:#fff; margin:6px; transition:transform .1s, background .15s; }
+  .btn:hover { transform:translateY(-2px); }
+  .btn-dl { background:#1f1640; } .btn-dl:hover { background:#000; }
+  .btn-cash { background:var(--green); color:#0b2a12; } .btn-cash:hover { background:var(--green-dark); }
+  .btn small { display:block; font-size:13px; font-weight:400; opacity:.9; }
+  .free { margin:14px 0 0; font-size:16px; color:#f3eaff; }
+  section { padding:44px 0; }
+  h2 { color:var(--purple-dark); font-size:30px; margin:0 0 18px; text-align:center; }
+  .formats { text-align:center; margin:-4px auto 0; max-width:820px; }
+  .formats span { display:inline-block; margin:4px; padding:6px 12px; border-radius:999px; font-weight:700;
+                  font-size:14px; color:#fff; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:18px; }
+  .card { background:var(--card); border:1px solid #e5dbff; border-radius:16px; padding:22px; }
+  .card .em { font-size:40px; }
+  .card h3 { margin:6px 0 6px; color:var(--purple-dark); font-size:20px; }
+  .card p { margin:0; color:var(--muted); }
+  .shot { text-align:center; }
+  .shot img { max-width:100%; border-radius:12px; border:1px solid #e5dbff; box-shadow:0 12px 40px rgba(59,31,143,.20); }
+  .shot p { color:var(--muted); font-size:14px; }
+  .vs { max-width:820px; margin:0 auto; border-collapse:collapse; width:100%; background:#fff; border-radius:12px; overflow:hidden; }
+  .vs th { background:var(--purple); color:#fff; padding:10px 14px; text-align:left; }
+  .vs td { padding:9px 14px; border-bottom:1px solid #eee; }
+  .vs td:nth-child(2) { text-align:center; width:120px; }
+  .donate { background:var(--purple-light); text-align:center; }
+  .donate p { max-width:640px; margin:0 auto 20px; font-size:18px; }
+  .cashtag { font-family:Consolas, monospace; font-size:20px; color:var(--purple-dark); }
+  .steps { background:var(--card); border:1px solid #e5dbff; border-radius:14px; padding:24px 30px; max-width:760px; margin:0 auto; }
+  .steps ol { margin:0; padding-left:22px; font-size:17px; }
+  .steps li { margin:10px 0; }
+  .note { background:#fff4e6; border-left:5px solid var(--orange); padding:14px 18px; border-radius:8px; margin-top:18px; }
+  .faq details { background:var(--card); border:1px solid #e5dbff; border-radius:10px; padding:12px 18px; margin:10px auto; max-width:760px; }
+  .faq summary { font-weight:700; cursor:pointer; color:var(--purple-dark); font-size:17px; }
+  footer { background:#1f1640; color:#b6a9e0; text-align:center; padding:26px 20px; font-size:14px; }
+  footer a { color:#e5dbff; }
+  @media (max-width:600px) { header h1 { font-size:34px; } .btn { font-size:18px; padding:16px 22px; display:block; } }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="app/assets/ez-tag-512.png" alt="EZ Tag icon">
+  <h1><span class="e">E</span><span class="z">Z</span> TAG</h1>
+  <p class="tag">Fix your music info. Easy.</p>
+  <p class="sub">A free, colorful music tag editor for Windows. Big buttons, plain English, and every feature
+     the pros use &mdash; for MP3, FLAC, M4A, WMA, WAV and every other kind of song file.</p>
+  <a class="btn btn-dl" href="https://github.com/DrSzaba/ez-tag/releases/latest/download/EZ-Tag-Setup.zip">⬇&nbsp; Download for Windows
+     <small>Version 1.1.0 &middot; 14 MB &middot; Windows 10 / 11 (64-bit)</small></a>
+  <a class="btn btn-cash" href="https://cash.app/$Szaba" target="_blank" rel="noopener">💚&nbsp; Donate with Cash App
+     <small>$Szaba &middot; only if you want to</small></a>
+  <p class="free">100% free. No ads, no sign-up, no subscription. Your music never leaves your computer.</p>
+</header>
+
+<section class="wrap">
+  <h2>Works with every kind of song file</h2>
+  <div class="formats">
+    <span style="background:#1c7ed6">MP3</span><span style="background:#0ca678">FLAC</span><span style="background:#f76707">M4A / AAC</span>
+    <span style="background:#7048e8">ALAC</span><span style="background:#d6336c">OGG</span><span style="background:#1098ad">Opus</span>
+    <span style="background:#e03131">WMA</span><span style="background:#2f9e44">WAV</span><span style="background:#ae3ec9">AIFF</span>
+    <span style="background:#4263eb">APE</span><span style="background:#66a80f">WavPack</span><span style="background:#a0522d">Musepack</span>
+    <span style="background:#f59f00">TTA</span><span style="background:#868e96">TAK</span><span style="background:#5f3dc4">DSF / DFF</span>
+    <span style="background:#0b7285">Speex</span><span style="background:#c2255c">AC3</span><span style="background:#495057">MP2</span>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card"><div class="em">⟳</div><h3>Updates itself (new in 1.1)</h3>
+      <p>When you open EZ Tag it checks for a new version and downloads it in the background. Click the yellow bar to update now, or it updates by itself when you close it. Your version is shown at the top. No more downloading it again.</p></div>
+    <div class="card"><div class="em">✏️</div><h3>Edit tags the easy way</h3>
+      <p>Click songs, type the title, artist, album, year, track, genre and comment, press <b>Save</b>. Pick 100 songs
+      and change them all at once &mdash; <b>&lt; keep &gt;</b> leaves each song's own value alone.</p></div>
+    <div class="card"><div class="em">🖼️</div><h3>Cover art</h3>
+      <p>Add a picture to a whole album in one click, use the <b>cover.jpg</b> in each folder, copy covers between
+      songs, save them out, shrink giant ones, or remove them.</p></div>
+    <div class="card"><div class="em">🔤</div><h3>Tag &rarr; File name</h3>
+      <p>Rename files from their tags like <b>01 - Song Title.mp3</b>, or sort them into
+      <b>Artist\Album</b> folders. You see every new name before anything changes.</p></div>
+    <div class="card"><div class="em">📝</div><h3>File name &rarr; Tag</h3>
+      <p>Fill in tags from file names with a simple pattern &mdash; or press <b>🧠 Smart Guess</b> and EZ Tag figures
+      out the track number, artist and title by itself.</p></div>
+    <div class="card"><div class="em">🌐</div><h3>Find album info online</h3>
+      <p>Look up the album on <b>MusicBrainz</b> or <b>iTunes</b> and fill in every song &mdash; titles, track
+      numbers, year, genre, label &mdash; plus a big clean cover. Free, no account.</p></div>
+    <div class="card"><div class="em">🪄</div><h3>Fix It All</h3>
+      <p>One button cleans messy tags: extra spaces and _underscores_, ALL CAPS, missing titles, track numbers stuck in
+      titles, dates like 2019-05-01, and songs with no cover.</p></div>
+    <div class="card"><div class="em">🔢</div><h3>Auto number</h3>
+      <p>Number tracks 1, 2, 3 (or 01, 02, 03) in list order, start over for each album, and fill in the total.</p></div>
+    <div class="card"><div class="em">🔁</div><h3>Find &amp; replace</h3>
+      <p>Change words in one field, all fields, or in file names. Whole words, case and advanced patterns if you want
+      them. Plus UPPER / lower / Title Case.</p></div>
+    <div class="card"><div class="em">📋</div><h3>Text list &rarr; Tag</h3>
+      <p>Paste a track list from a website or CD booklet and every song gets its title in order.</p></div>
+    <div class="card"><div class="em">🗂️</div><h3>Every field</h3>
+      <p>Album artist, composer, lyrics, BPM, key, mood, ISRC, label, sort names&hellip; and your own custom fields.</p></div>
+    <div class="card"><div class="em">📤</div><h3>Export &amp; playlists</h3>
+      <p>Make a pretty web page, an Excel spreadsheet, a text list, or an M3U playlist of your songs.</p></div>
+    <div class="card"><div class="em">👯</div><h3>Find duplicates</h3>
+      <p>Spot the same song saved twice and see which copy has the better quality.</p></div>
+    <div class="card"><div class="em">↩️</div><h3>Undo anything</h3>
+      <p>Changed your mind? Undo takes back the last change &mdash; even renamed files.</p></div>
+    <div class="card"><div class="em">🖱️</div><h3>Right-click a folder</h3>
+      <p>In Windows, right-click a music folder and pick <b>Edit tags with EZ Tag</b>.</p></div>
+  </div>
+</section>
+
+<section class="wrap shot">
+  <h2>Simple on purpose</h2>
+  <img src="docs/screenshot.png" alt="EZ Tag: colorful buttons on top, tag editor with cover on the left, songs on the right">
+  <p>1. Open a folder &nbsp;&rarr;&nbsp; 2. Pick songs &nbsp;&rarr;&nbsp; 3. Type or click a colorful button &nbsp;&rarr;&nbsp; 4. Save</p>
+</section>
+
+<section class="wrap">
+  <h2>Pro features, friendly buttons</h2>
+  <table class="vs">
+    <tr><th>You get</th><th>In EZ Tag</th></tr>
+    <tr><td>Edit many songs at once, every field, cover art, all audio formats</td><td>✅</td></tr>
+    <tr><td>Tag &rarr; File name, File name &rarr; Tag, Text &rarr; Tag, Set a field with format codes</td><td>✅</td></tr>
+    <tr><td>Free online album lookup with covers (MusicBrainz + iTunes)</td><td>✅</td></tr>
+    <tr><td>Big colorful buttons, previews before every change, plain-English help</td><td>✅</td></tr>
+    <tr><td>Smart Guess tags from file names</td><td>✅</td></tr>
+    <tr><td>One-click Fix It All cleanup</td><td>✅</td></tr>
+    <tr><td>Show only songs missing info or covers</td><td>✅</td></tr>
+    <tr><td>Find duplicate songs, shrink giant covers</td><td>✅</td></tr>
+    <tr><td>Undo &mdash; even file renames</td><td>✅</td></tr>
+  </table>
+</section>
+
+<section class="donate">
+  <div class="wrap">
+    <h2>Free forever &mdash; donations welcome</h2>
+    <p>EZ Tag is free for everyone and always will be. If it saved you time, a tip of any size helps keep it going.
+       Send it on Cash App to <span class="cashtag">$Szaba</span>. Thank you!</p>
+    <a class="btn btn-cash" href="https://cash.app/$Szaba" target="_blank" rel="noopener">💚&nbsp; Donate with Cash App</a>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>How to install</h2>
+  <div class="steps">
+    <ol>
+      <li>Click <b>Download for Windows</b> above and save the zip file.</li>
+      <li>Right-click the zip &rarr; <b>Extract All</b>, then double-click <b>EZ-Tag-Setup.exe</b>.</li>
+      <li>Click Next, Install, Finish. Start it from the Desktop shortcut <b>EZ Tag</b>.</li>
+    </ol>
+    <div class="note"><b>Seeing a blue "Windows protected your PC" box?</b> That's Windows being careful with any
+      new program from a small maker. Click <b>More info</b>, then <b>Run anyway</b>. Everything the program
+      needs is inside the setup &mdash; nothing else to download or install, and no admin password needed.</div>
+  </div>
+</section>
+
+<section class="wrap faq">
+  <h2>Questions</h2>
+  <details><summary>Will it mess up my songs?</summary><p>No. EZ Tag only changes the info you ask it to change and
+    leaves the music itself untouched. Every converter shows you a preview first, and Undo takes back the last change.</p></details>
+  <details><summary>Will my car, phone and Windows see the new info?</summary><p>Yes. MP3s are saved as ID3v2.3 by
+    default, the version that works everywhere. You can switch to ID3v2.4 in Settings.</p></details>
+  <details><summary>Does it need the internet?</summary><p>Only for <b>Find Online</b>. Everything else works offline.</p></details>
+  <details><summary>Does it work on a Mac or phone?</summary><p>Not yet &mdash; it's for Windows 10 and 11 (64-bit).</p></details>
+  <details><summary>Is it really free? What's the catch?</summary><p>No catch. No ads, no accounts, no time limit.
+    Donate only if you feel like it.</p></details>
+  <details><summary>Something went wrong &mdash; how do I get help?</summary><p>EZ Tag keeps a note of any problem at
+    <code>%APPDATA%\EZ Tag\error-log.txt</code>. Send that text and describe what you were doing.</p></details>
+</section>
+
+<footer>
+  EZ Tag 1.1.0 &middot; Updates itself &middot; Free software (GPL-3.0) by Dr. Szaba &middot; <a href="https://github.com/DrSzaba/ez-tag">Source code on GitHub</a><br>
+  Built with Python, <a href="https://github.com/quodlibet/mutagen" target="_blank" rel="noopener">mutagen</a> and Pillow.
+  Online info from <a href="https://musicbrainz.org" target="_blank" rel="noopener">MusicBrainz</a> and iTunes.
+</footer>
+</body>
+</html>
